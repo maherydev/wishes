@@ -1,0 +1,445 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #8B4CBF;
+    background: linear-gradient(135deg, #7B3FA0 0%, #9B5FD0 50%, #8B4CBF 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1;
+}
+
+.content {
+    text-align: center;
+    color: white;
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.greeting {
+    margin-bottom: 40px;
+}
+
+.family-label {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                 0 0 30px rgba(255, 255, 255, 0.4);
+    opacity: 0.95;
+    letter-spacing: 1px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.family-name {
+    font-size: clamp(2.5rem, 10vw, 5.5rem);
+    font-weight: 900;
+    margin: 15px 0;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 40px rgba(255, 255, 255, 0.6),
+                 0 0 60px rgba(255, 255, 255, 0.4),
+                 3px 3px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 4px;
+    animation: fadeInUp 1.2s ease-out,
+               nameGlow 3s ease-in-out infinite 1.5s;
+    text-transform: uppercase;
+}
+
+.family-members {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 600;
+    margin: 15px 0 20px 0;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.7),
+                 0 0 30px rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    animation: fadeInUp 1.4s ease-out;
+}
+
+.wish-text {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    font-weight: 400;
+    margin: 20px 0 15px 0;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+                 0 0 30px rgba(255, 255, 255, 0.4);
+    opacity: 0.95;
+    letter-spacing: 1px;
+    animation: fadeInUp 1.6s ease-out;
+}
+
+.animated-title {
+    font-size: clamp(2.2rem, 8vw, 4.8rem);
+    font-weight: bold;
+    margin: 20px 0 30px 0;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9),
+                 0 0 40px rgba(255, 255, 255, 0.7),
+                 0 0 60px rgba(255, 255, 255, 0.5),
+                 3px 3px 8px rgba(0, 0, 0, 0.3);
+    animation: titlePulse 2s ease-in-out infinite,
+               titleGlow 3s ease-in-out infinite,
+               fadeInUp 1.8s ease-out;
+    letter-spacing: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    line-height: 1.3;
+}
+
+.title-line {
+    display: block;
+}
+
+.title-year {
+    display: block;
+    font-size: 1.1em;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes nameGlow {
+    0%, 100% { 
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                     0 0 40px rgba(255, 255, 255, 0.6),
+                     0 0 60px rgba(255, 255, 255, 0.4),
+                     3px 3px 8px rgba(0, 0, 0, 0.3);
+    }
+    50% { 
+        text-shadow: 0 0 30px rgba(255, 255, 255, 1),
+                     0 0 60px rgba(255, 255, 255, 0.8),
+                     0 0 90px rgba(255, 255, 255, 0.6),
+                     3px 3px 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9),
+                     0 0 40px rgba(255, 255, 255, 0.7),
+                     0 0 60px rgba(255, 255, 255, 0.5),
+                     3px 3px 8px rgba(0, 0, 0, 0.3);
+    }
+    50% { 
+        text-shadow: 0 0 30px rgba(255, 255, 255, 1),
+                     0 0 60px rgba(255, 255, 255, 0.9),
+                     0 0 90px rgba(255, 255, 255, 0.7),
+                     3px 3px 8px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.name-display {
+    margin: 30px 0;
+    min-height: 60px;
+}
+
+.name-text {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: nameAppear 1s ease-out,
+               nameBounce 2s ease-in-out infinite 1s;
+    display: inline-block;
+    padding: 10px 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes nameAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes nameBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.wishes {
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.wish-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px 30px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.6s ease;
+}
+
+.wish-card.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.wish-card:nth-child(even) {
+    transform: translateX(100px);
+}
+
+.wish-card:nth-child(even).visible {
+    transform: translateX(0);
+}
+
+.wish-card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.madagascar-flag {
+    font-size: 1.5em;
+    display: inline-block;
+    margin: 0 10px;
+    animation: flagWave 2s ease-in-out infinite;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes flagWave {
+    0%, 100% { 
+        transform: rotate(0deg) scale(1);
+    }
+    25% { 
+        transform: rotate(-5deg) scale(1.1);
+    }
+    75% { 
+        transform: rotate(5deg) scale(1.1);
+    }
+}
+
+.year-display {
+    margin: 40px 0;
+}
+
+.year-number {
+    font-size: clamp(4rem, 15vw, 10rem);
+    font-weight: 900;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3),
+                 0 0 30px rgba(255, 255, 255, 0.6);
+    animation: yearRotate 3s ease-in-out infinite,
+               yearPulse 2s ease-in-out infinite;
+    display: inline-block;
+    background: linear-gradient(45deg, #ffd700, #ffed4e, #fff, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: yearRotate 3s ease-in-out infinite,
+               yearPulse 2s ease-in-out infinite,
+               yearGradient 4s ease infinite;
+}
+
+@keyframes yearRotate {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+@keyframes yearPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes yearGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 2rem;
+    animation: sparkleFloat 6s ease-in-out infinite;
+    opacity: 0;
+}
+
+.sparkle:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 5s;
+}
+
+.sparkle:nth-child(2) {
+    left: 30%;
+    animation-delay: 1s;
+    animation-duration: 6s;
+}
+
+.sparkle:nth-child(3) {
+    left: 50%;
+    animation-delay: 2s;
+    animation-duration: 7s;
+}
+
+.sparkle:nth-child(4) {
+    left: 70%;
+    animation-delay: 3s;
+    animation-duration: 5.5s;
+}
+
+.sparkle:nth-child(5) {
+    left: 85%;
+    animation-delay: 1.5s;
+    animation-duration: 6.5s;
+}
+
+.sparkle:nth-child(6) {
+    left: 20%;
+    animation-delay: 2.5s;
+    animation-duration: 7.5s;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(0deg);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(360deg);
+    }
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+.star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+    border-radius: 50%;
+    animation: starPulse 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.6; 
+        transform: scale(1);
+        box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.3);
+        box-shadow: 0 0 15px #FFD700, 0 0 30px #FFD700, 0 0 45px #FFD700;
+    }
+}
+
+@keyframes starPulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .wish-card {
+        padding: 15px 20px;
+    }
+    
+    .name-text {
+        padding: 8px 20px;
+    }
+    
+    .family-name {
+        letter-spacing: 2px;
+    }
+    
+    .animated-title {
+        letter-spacing: 2px;
+    }
+    
+    .family-members {
+        letter-spacing: 1px;
+    }
+}
+
